@@ -186,12 +186,12 @@ class CompliancePipeline:
                     sub_res = self.ocr_service.extract_text(b_sub)
                     engine_used = sub_res.engine_used
                     all_lines.extend(sub_res.lines)
-                    all_transcripts.append(sub_res.full_text)
+                    all_transcripts.append(sub_res.raw_text)
                     total_conf += sub_res.mean_confidence
                 mean_conf = round(total_conf / len(bgr_imgs), 3) if bgr_imgs else 0.0
                 ocr_res = OCRResult(
                     lines=all_lines,
-                    full_text="\n".join(all_transcripts),
+                    raw_text="\n".join(all_transcripts),
                     mean_confidence=mean_conf,
                     engine_used=engine_used,
                 )
