@@ -6,7 +6,7 @@ import base64
 import hashlib
 import html as _h
 import importlib
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import streamlit as st
@@ -122,7 +122,7 @@ def command_bar(engine: str, audit: str, package: str, live: bool) -> str:
         for k, v in (
             ("Engine", engine),
             ("Audit ID", audit[:8] if audit else "—"),
-            ("Captured", datetime.now(timezone.utc).strftime("%d %b · %H:%M UTC")),
+            ("Captured", datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%d %b · %H:%M IST")),
         )
     ])
     link = (
